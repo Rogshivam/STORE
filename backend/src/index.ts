@@ -1,6 +1,20 @@
 import * as express from "express";
+import * as cors from "cors";
+
+
 import { ENV } from "./config/env";
+import { clerkMiddleware } from '@clerk/express';
+import {User} from "./db/schema";
 const app = express();
+
+
+app.use(cors({ origin: ENV.FRONTEND_URL}))
+//auth obj will be attach to the request
+app.use(clerkMiddleware());
+//parase jSON request bodies
+app.use(express.json());
+//parase from data (link HTML form)
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.json({
