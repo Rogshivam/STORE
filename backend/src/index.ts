@@ -4,7 +4,7 @@ import * as cors from "cors";
 
 import { ENV } from "./config/env";
 import { clerkMiddleware } from '@clerk/express';
-import {User} from "./db/schema";
+// import {User} from "./db/schema";
 const app = express();
 
 

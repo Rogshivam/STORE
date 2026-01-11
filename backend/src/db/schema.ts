@@ -38,15 +38,15 @@ export const comments = pgTable("comments", {
   createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
 });
 
-// 🔴 Relations define how tables connect to each other. This enables Drizzle's query API
-// 🔴 to automatically join related data when using `with: { relationName: true }`
+// Relations define how tables connect to each other. This enables Drizzle's query API
+// to automatically join related data when using `with: { relationName: true }`
 
-// 🔴 Users Relations: A user can have many products and many comments
-// 🔴 `many()` means one user can have multiple related records
+//  Users Relations: A user can have many products and many comments
+// `many()` means one user can have multiple related records
 
 export const usersRelations = relations(users, ({ many }) => ({
-  products: many(products), // 🔴 One user → many products
-  comments: many(comments), // 🔴 One user → many comments
+  products: many(products), // One user can many products
+  comments: many(comments), // One user can many comments
 }));
 
 // Products Relations: a product belongs to one user and can have many comments
