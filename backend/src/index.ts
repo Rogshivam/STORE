@@ -1,9 +1,13 @@
-import * as express from "express";
-import * as cors from "cors";
-
-
+import express, { Request, Response } from "express";
+import cors from "cors";
 import { ENV } from "./config/env";
 import { clerkMiddleware } from '@clerk/express';
+
+import userRoutes from "./routes/userRoutes";
+import productRoutes from "./routes/productRoutes";
+import commentsRoutes from "./routes/commentRoutes";  
+
+
 // import {User} from "./db/schema";
 const app = express();
 
@@ -16,7 +20,7 @@ app.use(express.json());
 //parase from data (link HTML form)
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request , res: Response) => {
   res.json({
     message: "welcome to productivity API - powered by PostgreSQL, Drizzle ORM & Clerk Auth",
     endpoints: {
@@ -26,6 +30,9 @@ app.get("/", (req, res) => {
     }
   });
 });
+app.use("/api/users",userRoutes)
+app.use("/api/products", productRoutes)
+app.use("/api/comments", commentsRoutes)
 
 app.listen(ENV.PORT, () => {
   console.log("Server is up and running on PORT:", ENV.PORT);
