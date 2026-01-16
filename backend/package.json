@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "node dist/index.ts",
+    "start": "node dist/index.js",
     "build": "tsc",
     "db:push": "drizzle-kit push"
   },
